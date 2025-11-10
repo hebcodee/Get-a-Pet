@@ -10,8 +10,8 @@ Um sistema web desenvolvido para facilitar o processo de adoção de pets online
 
 Este projeto foi construído utilizando as seguintes tecnologias:
 
-* **Backend:** Node.js (com Express, Mongoose, etc., se aplicável)
-* **Frontend:** React (ou outra biblioteca/framework, como Vue.js, Angular)
+* **Backend:** Node.js com Express, Mongoose, bcryptjs, JWT, Multer, CORS e Nodemon
+* **Frontend:** React, React Router DOM, Axios, React Icons e Testing Library
 * **Banco de Dados:** MongoDB
 
 ---
