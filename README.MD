@@ -32,8 +32,7 @@ Siga os passos abaixo para configurar e rodar o projeto em seu ambiente local.
 ### 1. Clonar o Repositório
 
 ```bash
-git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/seu-usuario/nome-do-repositorio.git)
-cd nome-do-repositorio
+git clone https://github.com/hebcodee/get-a-pet
 ```
 
 ### 2. Instalação das Dependências
