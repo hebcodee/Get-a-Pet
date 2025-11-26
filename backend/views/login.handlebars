@@ -1,0 +1,70 @@
+<div class="page_wrapper" id="react-login-root" data-component="Login">
+  <section class="form_container" data-view="handlebars-login">
+    <h1>{{heading}}</h1>
+    <form id="login-form" action="{{action}}" method="post" novalidate>
+      {{#each inputs}}
+        <div class="form_control">
+          <label for="{{this.name}}">{{this.label}}:</label>
+          <input
+            type="{{this.type}}"
+            name="{{this.name}}"
+            id="{{this.name}}"
+            placeholder="{{this.placeholder}}"
+            autocomplete="{{this.autocomplete}}"
+            required
+          />
+        </div>
+      {{/each}}
+      <input type="submit" value="{{submitLabel}}" />
+    </form>
+    <p>
+      Não tem conta?
+      <a href="{{registerLink}}">Clique aqui.</a>
+    </p>
+    <p id="login-message" class="login_message" role="alert" aria-live="polite"></p>
+  </section>
+</div>
+
+<script>
+  ;(function () {
+    const form = document.getElementById('login-form')
+    const message = document.getElementById('login-message')
+
+    async function handleSubmit(event) {
+      event.preventDefault()
+      message.textContent = ''
+      message.className = 'login_message'
+
+      const formData = new FormData(form)
+      const payload = {
+        email: formData.get('email'),
+        password: formData.get('password'),
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+          credentials: 'include',
+        })
+
+        const data = await response.json()
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Não foi possível autenticar.')
+        }
+
+        message.textContent = data.message || 'Login realizado com sucesso!'
+        message.classList.add('success')
+      } catch (error) {
+        message.textContent = error.message
+        message.classList.add('error')
+      }
+    }
+
+    form.addEventListener('submit', handleSubmit)
+  })()
+</script>
